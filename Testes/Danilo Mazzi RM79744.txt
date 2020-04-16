@@ -1,0 +1,35 @@
+//Nome: Danilo Mazzi
+//RM: 79744
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class JUNITteste {
+
+	@Test
+	public void testMutua() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("Culpado", "Culpado");
+		assertEquals(5,result);		
+	}
+	@Test
+	public void testInocencia() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("Culpado", "");
+		assertEquals(0,result);		
+	}
+	@Test
+	public void testIndividual() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("", "Culpado");
+		assertEquals(10,result);		
+	}
+	@Test
+	public void testCumplices() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("", "");
+		assertEquals(1,result);		
+	}
+
+}
