@@ -33,3 +33,6 @@ public class JUNITteste {
 	}
 
 }
+
+//O erro encontrado pelo JUNIT foi que Resposta não pode ser resolvido como uma variavel e o metodo está esperando outro formato de variavel
+
