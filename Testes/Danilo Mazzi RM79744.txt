@@ -95,3 +95,64 @@ public class JulgamentoPrisioneiro {
 	}
 }
 // a correção feita se refere à variavel PENA_CONDENAÇÃO_MUTUA que foi mudade da 15 para 5
+--------------------------------------------------------------
+//novamente o erro apontado é baseado no teste para inocencia. O resultado esperado é 0 mas o resultado é 10
+//erro corrigido:
+
+public class JulgamentoPrisioneiro {
+
+	private int PENA_INOCENCIA = 0;
+	private int PENA_CONDENACAO_MUTUA = 5;
+	private int PENA_CONDENACAO_INDIVIDUAL = 10;
+	private int PENA_CONDENACAO_CUMPLICES = 11;
+	
+
+	public int calculaPena(String respostaPrisioneiroA, String respostaPrisioneiroB) {
+		if (respostaPrisioneiroA.equals("Culpado") ) {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_MUTUA;
+			} else {
+				return PENA_INOCENCIA;
+			}
+		} else {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_INDIVIDUAL;
+			} else {
+				return PENA_CONDENACAO_CUMPLICES;
+			}
+		}
+	}
+}
+//a correção feita se refere à variavel PENA_CONDENAÇÃO_INOCENCIA que foi mudado de 10 para 0
+---------------------------------------------------------------------
+//o erro apontado pelo JUNIT foi baseado no teste de cumplices. Era esperado 1 mas encontrou 11
+//erro corrigido:
+
+
+public class JulgamentoPrisioneiro {
+
+	private int PENA_INOCENCIA = 0;
+	private int PENA_CONDENACAO_MUTUA = 5;
+	private int PENA_CONDENACAO_INDIVIDUAL = 10;
+	private int PENA_CONDENACAO_CUMPLICES = 1;
+	
+
+	public int calculaPena(String respostaPrisioneiroA, String respostaPrisioneiroB) {
+		if (respostaPrisioneiroA.equals("Culpado") ) {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_MUTUA;
+			} else {
+				return PENA_INOCENCIA;
+			}
+		} else {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_INDIVIDUAL;
+			} else {
+				return PENA_CONDENACAO_CUMPLICES;
+			}
+		}
+	}
+}
+//a correção feita se refere à variavel PENA_CONDENAÇÃO_CUMPLICES que foi mudado de 11 para 1
+
+//Com isso o programa está funcionando corretamente
