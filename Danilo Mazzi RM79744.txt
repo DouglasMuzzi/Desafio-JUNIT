@@ -1,0 +1,126 @@
+//Nome: Danilo Mazzi
+//RM: 79744
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class JUNITteste {
+
+	@Test
+	public void testMutua() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("Culpado", "Culpado");
+		assertEquals(5,result);		
+	}
+	@Test
+	public void testInocencia() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("Culpado", "");
+		assertEquals(0,result);		
+	}
+	@Test
+	public void testIndividual() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("", "Culpado");
+		assertEquals(10,result);		
+	}
+	@Test
+	public void testCumplices() {
+		JulgamentoPrisioneiro teste = new JulgamentoPrisioneiro();
+		int result = teste.calculaPena("", "");
+		assertEquals(1,result);		
+	}
+
+}
+
+//O erro encontrado pelo JUNIT foi que Resposta não pode ser resolvido como uma variavel e o metodo está esperando outro formato de variavel
+
+//classe ajustada:
+
+
+public class JulgamentoPrisioneiro {
+
+	private int PENA_INOCENCIA = 10;
+	private int PENA_CONDENACAO_MUTUA = 15;
+	private int PENA_CONDENACAO_INDIVIDUAL = 10;
+	private int PENA_CONDENACAO_CUMPLICES = 11;
+	
+
+	public int calculaPena(String respostaPrisioneiroA, String respostaPrisioneiroB) {
+		if (respostaPrisioneiroA.equals("Culpado") ) {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_MUTUA;
+			} else {
+				return PENA_INOCENCIA;
+			}
+		} else {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_INDIVIDUAL;
+			} else {
+				return PENA_CONDENACAO_CUMPLICES;
+			}
+		}
+	}
+}
+
+//a variavel resposta foi mudado para tipo String e as validaçoes foram mudadas
+------------------------------------------------------------------------
+
+//agora o erro apontado é que o assert equals está retornando 15 em vez de de 5
+//erro corrigido:
+
+public class JulgamentoPrisioneiro {
+
+	private int PENA_INOCENCIA = 10;
+	private int PENA_CONDENACAO_MUTUA = 5;
+	private int PENA_CONDENACAO_INDIVIDUAL = 10;
+	private int PENA_CONDENACAO_CUMPLICES = 11;
+	
+
+	public int calculaPena(String respostaPrisioneiroA, String respostaPrisioneiroB) {
+		if (respostaPrisioneiroA.equals("Culpado") ) {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_MUTUA;
+			} else {
+				return PENA_INOCENCIA;
+			}
+		} else {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_INDIVIDUAL;
+			} else {
+				return PENA_CONDENACAO_CUMPLICES;
+			}
+		}
+	}
+}
+// a correção feita se refere à variavel PENA_CONDENAÇÃO_MUTUA que foi mudade da 15 para 5
+--------------------------------------------------------------
+//novamente o erro apontado é baseado no teste para inocencia. O resultado esperado é 0 mas o resultado é 10
+//erro corrigido:
+
+public class JulgamentoPrisioneiro {
+
+	private int PENA_INOCENCIA = 0;
+	private int PENA_CONDENACAO_MUTUA = 5;
+	private int PENA_CONDENACAO_INDIVIDUAL = 10;
+	private int PENA_CONDENACAO_CUMPLICES = 11;
+	
+
+	public int calculaPena(String respostaPrisioneiroA, String respostaPrisioneiroB) {
+		if (respostaPrisioneiroA.equals("Culpado") ) {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_MUTUA;
+			} else {
+				return PENA_INOCENCIA;
+			}
+		} else {
+			if (respostaPrisioneiroB.equals("Culpado")) {
+				return PENA_CONDENACAO_INDIVIDUAL;
+			} else {
+				return PENA_CONDENACAO_CUMPLICES;
+			}
+		}
+	}
+}
+//a correção feita se refere à variavel PENA_CONDENAÇÃO_INOCENCIA que foi mudado de 10 para 0
